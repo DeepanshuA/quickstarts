@@ -1,0 +1,26 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: kafkabind
+  namespace: default
+spec:
+  type: bindings.kafka
+  version: v1
+  initTimeout: 20m
+  metadata:
+  - name: brokers
+    value: sasl-issue.servicebus.windows.net:9093
+  - name: authRequired
+    value: "true"
+  - name: publishTopic # Optional. Used for output bindings.
+    value: "topic3"
+  - name: topics # Optional. Used for input bindings.
+    value: "topic3"
+  - name: consumerGroup # Optional. Used for input bindings.
+    value: "group1"
+  - name: saslUsername
+    value: $ConnectionString
+  - name: saslPassword
+    value: Endpoint=<Need to be filled>
+  - name: version
+    value: 1.0.0
